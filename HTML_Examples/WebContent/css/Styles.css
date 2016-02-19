@@ -56,17 +56,27 @@ label {
 input[type='text'] {
 	width: 173px;
 	height: 18px;
-	transition: width 2s;
-	-webkit-transition: width 2s; /* Safari 3.1 to 6.0 */
+	
 }
 
 input[type='text']:hover {
-	/*font-size: 1.4em;*/
-	width: 183px;
-    height: 28px;
-	border: 2px solid black;
+	font-size: 1.2em;
+	border: 3px solid blue;
 }
 
 tr:nth-child(2n+1) {
 	background-color: aquamarine;
+}
+
+#submitImg{
+    background-color: black;    
+    width: 65px;
+    transition: width 2s;
+	-webkit-transition: width 2s; /* Safari 3.1 to 6.0 */
+}
+
+#submitImg:hover{
+    
+    width: 95px;
+	border: 3px dotted black;
 }
