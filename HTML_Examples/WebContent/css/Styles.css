@@ -12,15 +12,14 @@ img {
 }
 
 body {
-	/* background-color: #33ccff;*/
-	
+	background-color: #b3ffff;
 }
 
-#header {
+header {
 	width: 100%;
 	height: 205px;
-	background-color: aliceblue;
-	color: darkblue
+	background-color: cadetblue;
+	color: darkblue;
 }
 
 #hdeft {
@@ -42,8 +41,32 @@ table, tr, td, th {
 	width: 35%;
 	border-collapse: collapse;
 	text-align: center;
-	background-color: aliceblue;
+	/*background-color: aliceblue;*/
 	border: 3.5px solid darkblue;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+label {
+	font-size: 1.0em;
+	font-style: italic;
+	font-family: Arial;
+}
+
+input[type='text'] {
+	width: 173px;
+	height: 18px;
+	transition: width 2s;
+	-webkit-transition: width 2s; /* Safari 3.1 to 6.0 */
+}
+
+input[type='text']:hover {
+	/*font-size: 1.4em;*/
+	width: 183px;
+    height: 28px;
+	border: 2px solid black;
+}
+
+tr:nth-child(2n+1) {
+	background-color: aquamarine;
 }

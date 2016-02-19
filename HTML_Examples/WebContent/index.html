@@ -2,20 +2,21 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link href="css/Styles.css" type="text/css" rel="stylesheet"/>
+<link href="css/Styles.css" type="text/css" rel="stylesheet" />
 <title>Penguins</title>
 </head>
 <body>
-	<div id="header">
+
+	<header>
 		<div id="hdLeft">
 			<img alt="Birds" src="images/Penguins.jpg">
 		</div>
 		<div id="hdRight">
 			<h1>Flight Less Birds</h1>
 		</div>
-	</div>
+	</header>
 
-	<div id="nav">
+	<nav>
 		<ul>
 			<li><a href="Home.html">Home</a></li>
 			<li><a href="Book.html">Book</a></li>
@@ -23,7 +24,36 @@
 			<li><a href="Review.html">Reviews</a></li>
 			<li><a href="Contact.html">Contact Us</a></li>
 		</ul>
-	</div>
+	</nav>
+	<section>
 
+		<form action="" method="get">
+
+			<table>
+				<tr>
+					<td><label>UserName</label></td>
+					<td><input type=text name="userName"></td>
+				</tr>
+				<tr>
+					<td><label>PassWord</label></td>
+					<td><input type="password" name="passWord"></td>
+				</tr>
+				<tr>
+					<td><label>Role</label></td>
+					<td><select name="role">
+							<option value="ADM">Administration</option>
+							<option value="ADCHFM">Chef</option>
+							<option value="WAI">Waiter</option>
+							<option value="MGR">Manager</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+                        <input type="submit" value="Login">
+                    </td>
+				</tr>
+			</table>
+		</form>
+	</section>
 </body>
 </html>
