@@ -7,13 +7,15 @@ function init() {
 			var ele = document.getElementById("itemName");
 			var img = document.getElementById("pict");
 			ele.innerHTML = this.itemName;
-			img.src = this.itemImage;
+			//img.src = this.itemImage;
+            document.getElementsByTagName("img")[0].src=this.itemImage;
 		}
 	};
 
 	console.log("Init Called");
 	console.log(item.itemName);
 	item.showItem();
+   
 	// console.log(item.prototype);
 }
 
