@@ -3,16 +3,20 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>JavaScript Example</title>
-    <script type="text/javascript" src="Scripts/QuickStart.js"></script>
-    <script type="text/javascript">
-    
-        console.log("Hello from Head");
-    </script>
+<script type="text/javascript" src="Scripts/QuickStart.js"></script>
+<script type="text/javascript">
+	console.log("Hello from Head");
+
+	function showMessage() {
+		console.log("Hello from Head Funtion");
+	}
+</script>
 </head>
 <body>
- <script type="text/javascript">
-    
-        console.log("Hello from Body");
-    </script>
+	<script type="text/javascript">
+		showMessage();
+		greet();
+		console.log("Hello from Body");
+	</script>
 </body>
 </html>
