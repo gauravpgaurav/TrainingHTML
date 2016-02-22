@@ -5,3 +5,9 @@ element.addEventListener("click", function() {
 		console.log("Button Clicked");
 	}
 });
+
+element.addEventListener("click", displayMsg);
+
+function displayMsg() {
+	window.alert("Oh you clicked !");
+}
