@@ -6,19 +6,33 @@
 </head>
 <script type="text/javascript" src="jsLibs/jquery-1.12.1.js"></script>
 <script type="text/javascript">
-
 	$(function() {
 
-		$("h1").css("color","blue");
-		$("#detail").css("font-size","1.6em");
-		$("ul>li").css("color","red");
-        
-//		$("body").css("background","black");
-//		$("body").css("color","white");
-        
-        
+		var iter = 0;
+
+		$("h1").css("color", "blue");
+		$("#detail").css("font-size", "1.6em");
+		$("ul>li").css("color", "red");
+		$("img").hover(function() {
+
+			if (iter == 0) {
+				$("img").animate({
+					width : "180px"
+				});
+
+				iter = 1;
+			}
+
+			else {
+				$("img").animate({
+					width : "90px"
+				});
+				iter = 0;
+			}
+
+		});
+
 	});
-    
 </script>
 <body>
 	<h1>jQuery Example</h1>
@@ -31,7 +45,8 @@
 		<li>ANT &amp; Log4j</li>
 		<li>Design Patterns</li>
 	</ul>
-    <ol>
+	<img src="images/logo.jpg" alt="mac" width="90px">
+	<ol>
 		<li>UML</li>
 		<li>OOAD</li>
 		<li>RDMS</li>
