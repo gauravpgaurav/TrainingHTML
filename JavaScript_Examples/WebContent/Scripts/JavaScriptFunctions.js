@@ -16,6 +16,7 @@ function returnFunction(name) {
 // Function 4
 function takeFunctionAsArg(func) {
 	var recvd = func;
+	console.log(recvd);
 	// recvd("qwerty");
 	recvd(txt.value);
 }
