@@ -16,7 +16,8 @@ function returnFunction(name) {
 // Function 4
 function takeFunctionAsArg(func) {
 	var recvd = func;
-	alert(recvd.show());
+	// recvd("qwerty");
+	recvd(txt.value);
 }
 
 // Function 5
@@ -46,26 +47,31 @@ function init() {
 	var txt = document.getElementById("txt");
 	var answer = document.getElementById("answer");
 
+	// Button 1
 	btn1.addEventListener("click", normalFunction);
 
+	// Button 2
 	btn2.addEventListener("click", function() {
 
 		withArgFunction(txt.value);
 
 	});
 
+	// Button 3
 	btn3.addEventListener("click", function() {
 
 		answer.innerHTML = returnFunction(txt.value);
 
 	});
 
+	// Button 4
 	btn4.addEventListener("click", function() {
 
-		takeFunctionAsArg(withArgFunction(txt.value));
+		takeFunctionAsArg(withArgFunction);
 
 	});
 
+	// Button 5
 	btn5.addEventListener("click", function() {
 
 		var funcList = returningFunction();
