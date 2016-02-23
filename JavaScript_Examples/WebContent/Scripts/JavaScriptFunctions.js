@@ -1,6 +1,6 @@
 function normalFunction() {
 
-	alert("I am a Normal Function");
+	// alert("I am a Normal Function");
 	answer.innerHTML = "I am a Normal Function";
 }
 
@@ -26,10 +26,12 @@ function returningFunction() {
 
 	return {
 		addClass : function() {
-			alert("Add Class Called");
+			// alert("Add Class Called");
+			answer.innerHTML = "Add Class Called ";
 		},
 		removeClass : function() {
-			alert("Remove Class Called");
+			// alert("Remove Class Called");
+			answer.innerHTML += ", Remove Class Called";
 		}
 	};
 }
