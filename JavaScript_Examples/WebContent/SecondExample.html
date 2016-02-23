@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Execution Order</title>
+</head>
+<script type="text/javascript" src="jsLibs/jquery-1.12.1.js"></script>
+<script type="text/javascript">
+
+	$(function() {
+
+		$("h1").css("color","blue");
+		$("#detail").css("font-size","1.6em");
+		$("ul>li").css("color","red");
+        
+//		$("body").css("background","black");
+//		$("body").css("color","white");
+        
+        
+	});
+    
+</script>
+<body>
+	<h1>jQuery Example</h1>
+	<h3 id="detail">AJAX Call</h3>
+	<ul>
+		<li>UML</li>
+		<li>OOAD</li>
+		<li>RDMS</li>
+		<li>Java</li>
+		<li>ANT &amp; Log4j</li>
+		<li>Design Patterns</li>
+	</ul>
+    <ol>
+		<li>UML</li>
+		<li>OOAD</li>
+		<li>RDMS</li>
+		<li>Java</li>
+		<li>ANT &amp; Log4j</li>
+		<li>Design Patterns</li>
+	</ol>
+</body>
+</html>

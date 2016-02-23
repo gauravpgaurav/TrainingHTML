@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Execution Order</title>
+</head>
+<script type="text/javascript" src="jsLibs/jquery-1.12.1.js"></script>
+<script type="text/javascript">
+    
+	//Only Rendered Once
+	window.onload = function() {
+		alert("On Load1 Called");
+	}
+    
+    window.onload = function() {
+		alert("On Load2 Called");
+	}
+
+	
+    // Can be multiple
+	$(function() {
+
+		alert("Ready1 Called");
+        
+	});
+    
+    $(function() {
+
+		alert("Ready2 Called");
+        
+	});
+    
+</script>
+<body>
+	<h1>jQuery Example</h1>
+	<h3 id="detail">AJAX Call</h3>
+	<ul>
+		<li>UML</li>
+		<li>OOAD</li>
+		<li>RDMS</li>
+		<li>Java</li>
+		<li>ANT &amp; Log4j</li>
+		<li>Design Patterns</li>
+	</ul>
+</body>
+</html>
