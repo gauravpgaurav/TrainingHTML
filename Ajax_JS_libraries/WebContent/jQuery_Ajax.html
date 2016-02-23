@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript" src="jsLibs/jquery-1.12.1.js"></script>
+<script type="text/javascript">
+	$(function() {
+
+		$("#usrId").blur(function() {
+
+			var usrId = $(this).val();
+			console.log("ID : "+usrId);
+			var url = "http://jsonplaceholder.typicode.com/users/" + usrId;
+			$.get(url, function(response) {
+
+				//jsonResp = JSON.parse(response);
+                console.log(response);
+				userName = response.username;
+                console.log("Name : "+userName);
+				$("#usrName").val(userName);
+
+			});
+		});
+	});
+</script>
+<body>
+
+	<fieldset>
+		<legend>Using jQuery Ajax</legend>
+
+		User Id <input type="text" name="userId" id="usrId"> User Name
+		<input type="text" name="userName" id="usrName">
+	</fieldset>
+</body>
+</html>
