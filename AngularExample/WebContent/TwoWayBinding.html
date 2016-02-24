@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>First Angular Example</title>
+<script type="text/javascript" src="scripts/angular.js"></script>
+
+<script type="text/javascript">
+	var app = angular.module("twoWay", []);
+	app.controller('currController', function($scope) {
+
+		$scope.usd = 0;
+		$scope.convRate = 68.61;
+		$scope.result = 0;
+
+		$scope.calculate = function() {
+
+			$scope.result = $scope.usd * $scope.convRate;
+		}
+
+	});
+</script>
+</head>
+<body>
+
+	<div data-ng-app="twoWay" data-ng-controller="currController">
+
+		US Dollars : <br>
+		<input type="text" name="usd" data-ng-model="usd"
+			data-ng-change="calculate()"><br>
+		<br>
+		<br> Conversion Rate : <br>
+		<input type="text" name="conv" data-ng-model="convRate"
+			data-ng-change="calculate()">
+		<hr>
+		INR Result : <input type="text" name="result" data-ng-model="result">
+
+	</div>
+</body>
+</html>
