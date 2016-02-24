@@ -28,9 +28,14 @@
 </head>
 <body>
 
-	<input type="search" placeholder="Search">
-	<br>
+
+
 	<div ng-app="repeat" ng-controller="itemController">
+		<h1>Search :</h1>
+
+		<input type="search" placeholder="Search" data-ng-model="criteria"
+			name="criteria"> <br>
+		<hr>
 		<table border="1" align="center">
 			<thead>
 				<tr>
@@ -40,7 +45,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="item in items | orderBy:'Quantity'| filter:search">
+				<tr ng-repeat="item in items | orderBy:'Quantity'| filter:criteria">
 					<td>{{item.Name}}</td>
 					<td>{{item.Price | currency}}</td>
 					<td><img alt="Product" data-ng-src="{{item.image}}"
@@ -48,5 +53,6 @@
 				</tr>
 			</tbody>
 		</table>
+		<hr>
 </body>
 </html>
