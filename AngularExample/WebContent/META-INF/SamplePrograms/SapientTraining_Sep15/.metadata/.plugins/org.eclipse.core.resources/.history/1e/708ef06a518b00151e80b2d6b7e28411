@@ -1,0 +1,110 @@
+ public Node addArticleNode(Article article, Node parent)                        #2
+            throws RepositoryException {
+
+        Node node = parent.addNode(article.getId());
+        node.setProperty(“title”, article.getTitle());
+        node.setProperty(“author”, article.getAuthor());
+        
+        Date publishDate = article.getPublishDate();
+        if (publishDate != null) {
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(publishDate);
+            node.setProperty(“publishDate”, cal);
+        }
+        
+        String description = article.getDescription();
+        if (description != null) {
+            node.setProperty(“description”, description);
+        }
+        
+        String keywords = article.getKeywords();
+        if (keywords != null) {
+            node.setProperty(“keywords”, keywords);
+        }
+        
+        Node pagesNode = node.addNode(“pages”, “nt:folder”);
+        int numPages = article.getPages().size();
+        for (int i = 0; i < numPages; i++) {
+            Page page = article.getPages().get(i);
+            addPageNode(pagesNode, page, i + 1);
+        }
+        
+        return node;
+    }
+    
+    
+    
+    
+      private void addPageNode(Node pagesNode, Page page, int pageNumber)             #3
+            throws RepositoryException {
+
+        Node pageNode = pagesNode.addNode(String.valueOf(pageNumber), “nt:file”);
+        Node contentNode = pageNode.addNode(Node.JCR_CONTENT, “nt:resource”);
+        contentNode.setProperty(“jcr:data”, page.getContent());
+    }
+}
+    
+    
+    public Article toArticle(Node node) throws RepositoryException {                #1
+        Article article = new Article();
+        article.setId(node.getName());
+        article.setTitle(node.getProperty(“title”).getString());
+        article.setAuthor(node.getProperty(“author”).getString());
+        
+        if (node.hasProperty(“publishDate”)) {
+            article.setPublishDate(
+                node.getProperty(“publishDate”).getDate().getTime());
+        }
+        
+        if (node.hasProperty(“description”)) {
+            article.setDescription(node.getProperty(“description”).getString());
+        }
+        
+        if (node.hasProperty(“keywords”)) {
+            article.setKeywords(node.getProperty(“keywords”).getString());
+        }
+        
+        return article;
+    }
+    
+    
+    
+Listing 4 JcrArticleDao.java, a JCR-based DAO implementation
+
+package com.springinpractice.ch12.dao.jcr;
+
+import static org.springframework.util.Assert.notNull;
+
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.inject.Inject;
+import javax.jcr.Node;
+import javax.jcr.NodeIterator;
+import javax.jcr.PathNotFoundException;
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.DataRetrievalFailureException;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+import org.springmodules.jcr.JcrCallback;
+import org.springmodules.jcr.SessionFactory;
+import org.springmodules.jcr.support.JcrDaoSupport;
+import com.springinpractice.ch12.dao.ArticleDao;
+import com.springinpractice.ch12.model.Article;
+import com.springinpractice.ch12.model.Page;
+
+@Repository
+@Transactional(readOnly = true)
+public class JcrArticleDao extends JcrDaoSupport implements ArticleDao {            #1
+    @Inject private ArticleMapper articleMapper;                                    #2
+    
+    @Inject
+    public void setSessionFactory(SessionFactory sessionFactory) {                  #3
+        super.setSessionFactory(sessionFactory);
+    }
+
+    @Transactional(readOnly = false)
+    

@@ -1,0 +1,68 @@
+package com.training.cntrls;
+
+
+import java.util.TreeSet;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.training.daos.CustomerDAO;
+import com.training.daos.DoctorDAO;
+import com.training.daos.PatientDAO;
+import com.training.entity.Customer;
+import com.training.entity.Doctor;
+import com.training.entity.InPatient;
+import com.training.entity.Patient;
+
+
+@Controller
+public class DoctorController {
+	
+	@Autowired
+	private ModelAndView mdl;
+	
+	@Autowired
+	private DoctorDAO dao;
+	
+	
+	@Autowired
+	private Doctor doctor;
+	
+	
+
+	@RequestMapping(value="/addDoctor.htm" ,method=RequestMethod.GET)
+	public ModelAndView initAddCustomer(){
+		
+		mdl.addObject("command",doctor);
+		mdl.setViewName("AddDoctor");
+		return mdl;
+	}
+
+	
+		@RequestMapping(value="/addDoctor.htm" ,method=RequestMethod.POST)
+	public String onSubmit(@ModelAttribute("doc") Doctor doc){
+		
+		
+		int rowInserted= dao.add(doc);
+			if(rowInserted>0)
+				return "Show";
+			else return "index";
+		
+		
+
+	}
+	
+}

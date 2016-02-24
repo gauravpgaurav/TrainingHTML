@@ -1,0 +1,25 @@
+package com.training.blog.example;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+public class Application   {
+
+	public static void main(String[] args) throws Exception {
+		
+	JackrabbitBlogEntryDAO dao=new JackrabbitBlogEntryDAO();
+	
+	Calendar cal=Calendar.getInstance();
+	   cal.set(2015, 11, 17);
+			   BlogEntryDTO dto= new BlogEntryDTO("admin", "javaBlog", "java verion 9", cal);
+	  dao.insertBlogEntry(dto);
+	
+ 
+	   BlogEntryDTO foundDTO=dao.getBlogEntry("javaBlog");
+	     System.out.println(foundDTO.getBlogContent());
+	     System.out.println(foundDTO.getTitle());
+	    
+	     
+	}
+
+}

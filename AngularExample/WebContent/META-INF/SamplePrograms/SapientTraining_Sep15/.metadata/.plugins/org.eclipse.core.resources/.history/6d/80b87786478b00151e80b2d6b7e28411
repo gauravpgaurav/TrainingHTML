@@ -1,0 +1,17 @@
+package com.training.domains;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+public class Article {
+
+    private String id;
+    private String title;
+    private String author;
+    private Date publishDate;
+    private String description;
+    private String keywords;
+    private List pages = new ArrayList();
+
+}

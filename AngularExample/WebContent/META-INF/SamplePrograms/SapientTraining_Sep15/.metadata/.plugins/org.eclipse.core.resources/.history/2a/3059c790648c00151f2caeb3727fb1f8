@@ -1,0 +1,34 @@
+package com.training.entity;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class InPatient extends Patient {
+
+	private String wardNumber;
+	private String admissionDate;
+	public String getWardNumber() {
+		return wardNumber;
+	}
+	public void setWardNumber(String wardNumber) {
+		this.wardNumber = wardNumber;
+	}
+	public String getAdmissionDate() {
+		return admissionDate;
+	}
+	public void setAdmissionDate(String admissionDate) {
+		this.admissionDate = admissionDate;
+	}
+	public InPatient() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public InPatient(int patientId, String patientName, long handPhone,
+			String wardNumber, String admissionDate) {
+		super(patientId, patientName, handPhone);
+		this.wardNumber = wardNumber;
+		this.admissionDate = admissionDate;
+	}
+	
+	
+}

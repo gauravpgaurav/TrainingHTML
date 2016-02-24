@@ -1,0 +1,93 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+    <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link type="text/css" href="resources/css/MyStyle.css" rel="stylesheet" />
+
+<script type="text/javascript" src="../../resources/scripts/jquery-1.8.2.js"></script>
+
+<script type="text/javascript">
+
+$(function(){
+	
+	$("input[type=text]").on('copy',function(event){
+		
+		event.preventDefault();
+		
+	});
+	
+	
+  $("document").on('contextmenu',function(event){
+		
+		event.preventDefault();
+		
+		alert("Right Clicked Prevent for Safety");
+		
+	});
+	
+});
+
+</script>
+<title>Add Patient Details</title>
+<style type="text/css">
+fieldset {
+	width: 15% ;
+	height: 30%;
+	margin-left: auto;
+	margin-right: auto;
+}
+</style>
+</head>
+<body>
+
+<header>
+<ul>
+<li><a href="addPatient.htm">Add Patient</a></li>
+<li><a href="findPatient.htm">Find Patient</a></li>
+<li><a href="srchAllPatient.htm">Find  All Patients</a></li>
+
+</ul>
+
+
+</header>
+
+<fieldset>
+
+<legend style="font-size: 1.2em;color: red">Add Customer Details</legend>
+<form:form action="addPatient.htm" method="post">
+
+
+	<spring:message code="label.patId"></spring:message>
+ 		<form:input path="patientId"/>
+			   <form:errors path="patientId" />
+	<spring:message code="label.patName"></spring:message> 
+		<form:input path="patientName"/>
+				<form:errors path="patientName" />
+
+	<spring:message code="label.handPhone"></spring:message>
+ 		<form:input path="handPhone" size="30px"/>
+ 				<form:errors path="handPhone" />
+ 	<label>Office Address</label>
+		<form:input path="officeAddress.addLine1"/>
+		<form:input path="officeAddress.addLine2"/>
+		<form:input path="officeAddress.city"/>
+		<form:input path="officeAddress.pinCode"/>
+		
+	
+	<label>Residence  Address</label>
+		<form:input path="resiAddress.addLine1"/>
+		<form:input path="resiAddress.addLine2"/>
+		<form:input path="resiAddress.city"/>
+		<form:input path="resiAddress.pinCode"/>
+				
+				
+	<input type="submit" value="Add"/>
+	
+</form:form>
+</fieldset>
+</body>
+</html>

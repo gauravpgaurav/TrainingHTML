@@ -1,0 +1,113 @@
+package com.training;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.jcr.*;
+
+import org.apache.jackrabbit.core.TransientRepository;
+
+import com.training.domains.Article;
+import com.training.domains.Page;
+
+public class SecondExample {
+
+	
+	public static void addPageNode(Node pagesNode, Page page, int pageNumber) throws RepositoryException {
+
+		System.out.println(String.valueOf(pageNumber));
+			Node pageNode = pagesNode.addNode(String.valueOf(pageNumber), "nt:file");
+			Node contentNode = pageNode.addNode(Node.JCR_CONTENT, "nt:resource");
+			contentNode.setProperty("jcr:data", page.getContent());
+			
+}
+	
+	public static  Node addArticleNode(Article article, Node parent) throws RepositoryException {
+
+		Node node = parent.addNode(article.getId());
+			node.setProperty("title", article.getTitle());
+			node.setProperty("author", article.getAuthor());
+			node.setProperty("description", article.getDescription());
+			node.setProperty("keywords", article.getKeywords());
+
+
+			Node pagesNode = node.addNode("pages", "nt:folder");
+				int numPages = article.getPages().size();
+					   for (int i = 0; i < numPages; i++) {
+						   	Page page = article.getPages().get(i);
+						   		addPageNode(pagesNode, page, i + 1);
+						   		
+					   }
+
+					   
+					   
+					  PropertyIterator itr= pagesNode.getProperties();
+					  
+					  while(itr.hasNext())
+					  {
+						   Property p =(Property)itr.next();
+						   
+						    System.out.println(p.getPath());
+						    System.out.println(p.getName());
+						    System.out.println(p.getType());
+						  
+					  }
+					   
+					   
+			   return node;
+}
+
+	
+	public static void main(String[] args) {
+
+		try {
+			
+			Repository repository = new TransientRepository(); 
+	        Session session = repository.login( 
+	        new SimpleCredentials("admin", "admin".toCharArray())); 
+	        try { 
+	            Node root = session.getRootNode(); 
+
+	            Article art=new Article();
+	             art.setAuthor("Srivatsan");
+	             art.setDescription("course materails");
+	             art.setId("101");
+	             art.setKeywords("jcr");
+	             art.setTitle("JACK Rabbit");
+	            
+	             Page page1 =new Page("Apache Jackrabbit is a project of the Apache Software Foundation");
+	             Page page2 =new Page("The Apache Jackrabbit content repository is a fully conforming"
+	             		+ " implementation of the Content Repository for Java Technology API (JCR, specified in JSR 170 and JSR 283)");
+	             Page page3 =new Page("A content repository is a hierarchical content store with support for structured and unstructured content, full text search, "
+	             		+ "               versioning, transactions, observation, and more.");
+	             
+	               List<Page> pageList =new ArrayList<Page>();
+	               
+	               pageList.add(page1);
+	               pageList.add(page2);
+	               pageList.add(page3);
+	             
+	             art.setPages(pageList);
+	               
+	            Node artNode=root.addNode("javaBlog");
+	            
+	            addArticleNode(art, artNode);
+	            
+	              session.save();
+	              
+	             			            
+	             
+	             
+	        } finally { 
+	            session.logout(); 
+	        } 
+	    
+		} catch (Exception e) {
+		      e.printStackTrace();	
+		}
+
+	}
+
+}

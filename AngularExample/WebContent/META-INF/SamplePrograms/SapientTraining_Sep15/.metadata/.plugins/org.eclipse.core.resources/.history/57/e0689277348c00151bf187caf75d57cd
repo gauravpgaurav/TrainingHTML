@@ -1,0 +1,8 @@
+page.headSrch=Résultat de la recherche
+label.custid=N  de client
+label.custName=le nom du client
+label.handPhone=Hand Phone
+label.email=Email
+
+label.patId=Patient Id
+label.patName=Patient Name

@@ -1,0 +1,5 @@
+package com.training.cntrls;
+
+public class AppointmentController {
+
+}

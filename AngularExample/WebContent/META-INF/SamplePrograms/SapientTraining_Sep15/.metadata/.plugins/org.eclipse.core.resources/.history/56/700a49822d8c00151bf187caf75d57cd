@@ -1,0 +1,25 @@
+package com.training.daos;
+
+import java.util.List;
+
+public class PatientDAO implements MyDAO<Patient>
+
+	@Override
+	public int add(PatieT t) {
+		
+		return 0;
+	}
+
+	@Override
+	public PatieT find(long key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<PatieT> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}> {
+
+}

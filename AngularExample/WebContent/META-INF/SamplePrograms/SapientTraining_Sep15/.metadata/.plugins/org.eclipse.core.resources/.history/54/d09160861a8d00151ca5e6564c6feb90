@@ -1,0 +1,17 @@
+package com.training.blog.example;
+
+import java.util.Calendar;
+
+public class Application   {
+
+	public static void main(String[] args) throws Exception {
+		
+	JackrabbitBlogEntryDAO dao=new JackrabbitBlogEntryDAO();
+	
+	BlogEntryDTO dto= new BlogEntryDTO("admin", "java Blog", "java verion 9", null);
+	    dao.insertBlogEntry(dto);
+	
+
+	}
+
+}

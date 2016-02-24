@@ -1,0 +1,24 @@
+package com.training.cntrls;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.training.daos.CustomerDAO;
+import com.training.daos.PatientDAO;
+import com.training.entity.Customer;
+
+@Controller
+public class PatientController {
+
+	@Autowired
+	private ModelAndView mdl;
+	
+	@Autowired
+	private PatientDAO dao;
+	
+	@Autowired
+	private Patient patient;
+	
+
+}

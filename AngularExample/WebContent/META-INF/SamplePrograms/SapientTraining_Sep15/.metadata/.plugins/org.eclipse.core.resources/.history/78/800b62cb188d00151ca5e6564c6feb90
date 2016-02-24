@@ -1,0 +1,59 @@
+package com.onjava.blog.data.dto;
+
+import java.util.Calendar;
+
+
+public class BlogEntryDTO {
+
+	private String userName;
+	private String title;
+	private String blogContent;
+	private Calendar creationTime;
+	
+	public BlogEntryDTO(String userName, String title, String blogContent, Calendar creationTime){
+		this.userName = userName;
+		this.title = title;
+		this.blogContent = blogContent;
+		this.creationTime = creationTime;
+	}
+	
+	public String getBlogContent() {
+		return blogContent;
+	}
+	public void setBlogContent(String blogContent) {
+		this.blogContent = blogContent;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public Calendar getCreationTime() {
+		return creationTime;
+	}
+
+	public void setCreationTime(Calendar creationTime) {
+		this.creationTime = creationTime;
+	}
+
+	public String toString() {
+		StringBuffer blogEntryDTOString = new StringBuffer("BlogEntryDTO=[");
+		blogEntryDTOString.append(" userName="+userName);
+		blogEntryDTOString.append(", title="+title);
+		blogEntryDTOString.append(", blogContent="+blogContent);
+		blogEntryDTOString.append(", creationTime="+creationTime);
+
+		blogEntryDTOString.append(" ]");
+		return blogEntryDTOString.toString();
+	}
+	
+	
+}

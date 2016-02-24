@@ -1,0 +1,48 @@
+package com.training;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+import com.training.domains.Address;
+import com.training.entity.Patient;
+
+public class ComponentMapping {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		
+		Session session =factory.openSession();
+		
+		Transaction tx = session.beginTransaction();
+		
+		Patient obj =new Patient(110,"Jay",8789899L);
+		
+		Address resiAdd=new Address("Gandhi Street", "NehruNagar", "indiraprasth",1100101);
+		
+		Address offAdd=new Address("Sector 145", "Tech Park", "Noida",1200101);
+		
+		obj.setOfficeAddress(offAdd);
+		
+		obj.setResiAddress(resiAdd);
+		
+		
+		 Integer key =(Integer)session.save(obj);
+		  
+		  tx.commit();
+		  
+		 System.out.println("One Patient with Id :="+ key +" Saved");
+		 
+		 Patient pat2 = (Patient) session.get(Patient.class, 110);
+		 
+		 System.out.println(pat2);
+		 System.out.println(pat2.getOfficeAddress());
+		 System.out.println(pat2.getOfficeAddress());
+		 
+		  
+	}
+
+}

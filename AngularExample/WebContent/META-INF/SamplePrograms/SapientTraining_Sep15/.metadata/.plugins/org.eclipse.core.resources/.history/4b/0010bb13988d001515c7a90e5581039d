@@ -1,0 +1,42 @@
+package com.training.blog.example;
+
+import java.io.IOException;
+
+import javax.jcr.LoginException;
+import javax.jcr.Repository;
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
+import javax.jcr.SimpleCredentials;
+import javax.servlet.ServletException;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.jackrabbit.core.TransientRepository;
+
+public class JackrabbitPlugin {
+	public static Session session;
+	Log _logger = LogFactory.getLog(JackrabbitPlugin.class);
+	
+	public static void main(String[] args) {
+		
+		try {
+			System.setProperty("org.apache.jackrabbit.repository.home","c:/temp/Blogging");
+			Repository repository = new TransientRepository();
+			session = repository.login(new SimpleCredentials("username",
+					"password".toCharArray()));
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+	}	
+		
+	static Session getSession() throws Exception{
+		
+		Repository repository = new TransientRepository(); 
+		Session session = repository.login( 
+		        new SimpleCredentials("admin", "admin".toCharArray())); 
+	    
+		return session;
+	} 
+}

@@ -1,0 +1,117 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+<link type="text/css" href="resources/css/MyStyle.css" rel="stylesheet" />
+
+<script type="text/javascript" src="resources/scripts/jquery-1.8.2.js"></script>
+<script type="text/javascript">
+
+
+$(document).ready(
+
+  function () {
+
+    $('.nav li').hover(
+      function () { 
+        $('ul', this).fadeIn();
+      },
+      function () { 
+        $('ul', this).fadeOut();
+      }
+    );
+  }
+);
+
+</script>
+<style type="text/css">
+
+h1 {
+  font-family: Helvetica;
+  font-weight: 100;
+}
+
+.nav {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+.nav li {
+	float: left;
+	width: 160px;
+	position: relative;
+}
+
+.nav li a {
+	display: block;
+	padding: 7px 8px;
+	text-decoration: none;
+	border-top: 1px solid #069;
+}
+
+.nav li a:hover {
+	color: #069;
+}
+
+/*=== submenu ===*/
+
+.nav ul {
+	display: none;
+	position: absolute;
+	margin-left: 0px;
+	list-style: none;
+	padding: 0px;
+}
+
+.nav ul li {
+	width: 160px;
+	float: left;
+}
+
+.nav ul a {
+	display: block;
+	height: 15px;
+
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Spring MVC N-Tier Application</title>
+</head>
+<body>
+
+<header>
+<c:out value="Language"/>
+ <a href="?lang=en">English</a>
+<a href="?lang=fr">French</a>
+<h1>Spring MVC Application</h1>
+</header>
+
+	<div>
+  		<ul class="nav">
+  			<li>
+  				<a href="#">Home</a>
+  			</li>
+  			<li>
+  				<a href="#">Add</a>
+  				<ul>
+  					<li><a href="addPatient.htm">Patient</a></li>
+  					<li><a href="addDoctor.htm">Doctor</a></li>
+  					<li><a href="#">Appointment</a></li>
+  				</ul>
+  			</li>
+  			<li>
+  				<a href="#">Find</a>
+  				<ul>
+  					<li><a href="#">Patient</a></li>
+  					<li><a href="#">Doctor</a></li>
+  				</ul>
+  			</li>
+  		</ul>
+  
+
+
+
+</body>
+</html>

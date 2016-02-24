@@ -1,0 +1,5 @@
+package org.eclipse.kura.example.hello_osgi;
+
+public class HelloOsgi {
+
+}

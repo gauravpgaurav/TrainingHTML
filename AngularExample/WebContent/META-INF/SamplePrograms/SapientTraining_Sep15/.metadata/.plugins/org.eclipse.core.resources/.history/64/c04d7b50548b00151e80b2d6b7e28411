@@ -1,0 +1,45 @@
+package com.training;
+
+import javax.jcr.*;
+
+import org.apache.jackrabbit.core.TransientRepository;
+
+import com.training.domains.Article;
+
+public class AddApplication {
+
+	public static void main(String[] args) {
+
+		try {
+			
+			Repository repository = new TransientRepository(); 
+	        Session session = repository.login( 
+	        new SimpleCredentials("admin", "admin".toCharArray())); 
+	        try { 
+	            Node root = session.getRootNode(); 
+
+  	            Article art=new Article();
+	             art.setAuthor("Srivatsan");
+	             art.setDescription("course materails");
+	             art.setId("101");
+	             art.setKeywords("jcr");
+	            art.setTitle("JACK Rabbit");
+	            
+	            Node artNode=root.addNode(art.getKeywords());
+	            
+	            Node author = artNode.addNode("Description");
+	              author.setProperty("message",art.getDescription());
+	              session.save();
+	              
+	             			            
+	        } finally { 
+	            session.logout(); 
+	        } 
+	    
+		} catch (Exception e) {
+		      e.printStackTrace();	
+		}
+
+	}
+
+}

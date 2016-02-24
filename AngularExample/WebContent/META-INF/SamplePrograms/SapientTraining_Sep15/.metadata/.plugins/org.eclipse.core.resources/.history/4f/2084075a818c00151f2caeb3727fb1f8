@@ -1,0 +1,91 @@
+package com.training.cntrls;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.TreeSet;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.training.daos.CustomerDAO;
+import com.training.daos.DoctorDAO;
+import com.training.daos.PatientDAO;
+import com.training.entity.Customer;
+import com.training.entity.Doctor;
+import com.training.entity.InPatient;
+import com.training.entity.Patient;
+
+
+@Controller
+public class DoctorController {
+	
+	@Autowired
+	private ModelAndView mdl;
+	
+	@Autowired
+	private DoctorDAO dao;
+	
+	
+	@Autowired
+	private PatientDAO patDao;
+	
+	@Autowired
+	private Doctor doctor;
+	
+	@Autowired
+	@Qualifier(value="patient")
+	private Patient pat;
+	
+	
+
+	@RequestMapping(value="/addDoctor.htm" ,method=RequestMethod.GET)
+	public ModelAndView initAddCustomer(){
+		
+		mdl.addObject("command",doctor);
+		mdl.addObject("pat",pat);
+		mdl.setViewName("AddDoctor");
+		return mdl;
+	}
+
+	@RequestMapping(value="/apps.htm" ,method=RequestMethod.GET)
+	@ResponseBody
+	public Patient  addPatient(HttpServletRequest req ){
+		
+		long key = Long.parseLong(req.getParameter("patId"));
+		Patient pat=patDao.find(key);
+		System.out.println(pat);
+		String[] vals= {pat.getPatientName(),String.valueOf(pat.getHandPhone())};
+		return pat;
+	}
+	@RequestMapping(value="/addDoctor.htm" ,method=RequestMethod.POST)
+	public String onSubmit(@ModelAttribute("command") Doctor obj,BindingResult result,Errors error){
+		
+				
+		int rowInserted= dao.add(obj);
+			if(rowInserted>0)
+				return "Show";
+			else return "index";
+		
+
+	}
+	
+}

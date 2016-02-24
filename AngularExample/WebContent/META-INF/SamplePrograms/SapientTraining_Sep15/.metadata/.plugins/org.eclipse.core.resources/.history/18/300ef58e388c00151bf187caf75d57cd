@@ -1,0 +1,31 @@
+package com.training.cntrls;
+
+import java.util.List;
+
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
+import com.training.daos.MyDAO;
+import com.training.entity.Doctor;
+
+public class DoctorDAO extends HibernateDaoSupport implements MyDAO<Doctor> {
+
+	@Override
+	public int add(Doctor t) {
+		
+		int key= (Integer)getHibernateTemplate().save(t);
+		return key;
+	}
+
+	@Override
+	public Doctor find(long key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Doctor> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

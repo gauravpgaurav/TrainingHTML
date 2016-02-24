@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 13, 2015 11:10:10 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.training.entity.Patient" table="SapientPATIENT">
+        <id name="patientId" type="int">
+            <column name="PATIENTID" />
+            <generator class="assigned" />
+        </id>
+        <property name="patientName" type="java.lang.String">
+            <column name="PATIENTNAME" />
+        </property>
+        <property name="handPhone" type="long">
+            <column name="HANDPHONE" />
+        </property>
+        
+        <component name="resiAddress" class="com.training.domains.Address">
+        	  <property name="addLine1" column="resiAddLine1" type="string"/>
+          	<property name="addLine2" column="resiAddLine2" type="string"/>
+          	<property name="city" column="resCity" type="string"/>
+          	<property name="pinCode" column="resiPinCode" type="long"/>
+        </component>
+        
+        
+        <component name="officeAddress" class="com.training.domains.Address">
+        	  <property name="addLine1" column="offAddLine1" type="string"/>
+          	<property name="addLine2" column="offAddLine2" type="string"/>
+          	<property name="city" column="offCity" type="string"/>
+          	<property name="pinCode" column="offPinCode" type="long"/>
+        </component>
+        
+        <joined-subclass name="com.training.entity.InPatient" extends="com.training.entity.Patient" table="Sapient_InPatient">
+                  <key column="patientId"></key>
+         <property name="admissionDate" type="string"></property>
+         <property name="wardNumber" type="string"></property>
+   </joined-subclass>
+ 
+        
+    </class>
+</hibernate-mapping>

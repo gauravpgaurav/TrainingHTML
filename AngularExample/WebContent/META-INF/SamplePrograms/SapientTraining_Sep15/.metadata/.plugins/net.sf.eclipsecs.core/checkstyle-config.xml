@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-configurations file-format-version="5.0.0" default-check-configuration="CustomSun Checks (Eclipse)">
+  <check-configuration name="myRules" location="internal_config_1443111458478.xml" type="internal" description=""/>
+  <check-configuration name="CustomSun Checks (Eclipse)" location="internal_config_1443428283123.xml" type="internal" description="Slightly modified version of Sun Checks that better matches the default code formatter setting of Eclipse."/>
+</checkstyle-configurations>

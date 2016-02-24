@@ -1,0 +1,11 @@
+package com.training.entity;
+import java.util.*;
+public class Appointment {
+
+	private int id;  
+	private Doctor doc;
+	private String appointDate;
+	private List<Patient> patientList;
+	
+	
+}

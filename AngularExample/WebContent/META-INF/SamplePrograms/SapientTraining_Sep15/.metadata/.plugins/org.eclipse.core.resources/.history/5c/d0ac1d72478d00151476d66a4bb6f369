@@ -1,0 +1,64 @@
+package com.training;
+
+import javax.jcr.*;
+
+import org.apache.jackrabbit.core.TransientRepository;
+
+import com.training.domains.Article;
+
+
+public class FindApplication {
+
+    
+
+	
+	public static Article parseToArticle(Node node) throws RepositoryException
+	{
+		     Article article = new Article();
+	        article.setId(node.getName());
+	        article.setTitle(node.getProperty("title").getString());
+	        article.setAuthor(node.getProperty("author").getString());
+	         article.setDescription(node.getProperty("description").getString());
+	         article.setKeywords(node.getProperty("keywords").getString());
+	        
+	        return article;
+	    
+	}
+	
+	public static void main(String[] args) {
+
+		Repository repository = new TransientRepository(); 
+        try {
+
+        	Session session = repository.login( 
+                    new SimpleCredentials("admin", "admin".toCharArray())); 
+
+            Node root = session.getRootNode();
+            
+            Node node = root.getNode("101");
+            
+          
+            Article obj =parseToArticle(node);
+            
+            
+            System.out.println(obj);
+            
+            Node nd2=node.getNode(" /101/pages/2/resource/jcr:data");
+            
+           
+                   
+           //System.out.println("page nodes has child Node"+node.getNode("101/pages/1/resource"));
+
+           // System.out.println("page nodes has child Node"+node.getNode("/pages/1/jcr:content"));
+            
+           // System.out.println("page nodes has child Node"+node.getNode("1/jcr:content"));
+            
+
+        }
+        catch(Exception e)
+        {
+        	e.printStackTrace();
+        }
+			}
+
+}

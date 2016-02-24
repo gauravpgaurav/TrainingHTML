@@ -1,0 +1,44 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Found Customer</title>
+</head>
+<body>
+
+
+<ul>
+<li><a href="addCustomer.htm">Add Customer</a></li>
+<li><a href="findCustomer.htm">Find Customer</a></li>
+<li><a href="srchAll.htm">Find  All Customers</a></li>
+
+</ul>
+
+
+<spring:message code="page.headSrch" text="Show Customer Details"></spring:message>
+
+<c:set var="obj" value="${cust}"></c:set>
+
+<div>
+<div><label>Customer Name</label></div>
+<div><c:out value="${obj.customerName}"></c:out></div>
+</div>
+
+<div>
+<div><label>Hand Phone</label></div>
+<div><c:out value="${obj.handPhone}"></c:out></div>
+</div>
+
+
+<div>
+<div><label>Email Id</label></div>
+<div><c:out value="${obj.email}"></c:out></div>
+</div>
+
+ 
+</body>
+</html>

@@ -1,0 +1,11 @@
+-buildpath: \
+	osgi.core,\
+	osgi.cmpn;version=5.0.0,\
+	org.examples.api;version=latest,\
+	biz.aQute.bnd.annotation,\
+	junit.osgi
+-sub: *.bnd
+-runfw: org.apache.felix.framework;version='[4.0.3,4.0.3]'
+-runbundles: \
+	org.examples.api;version=latest,\
+	org.example.impls.provider;version=latest

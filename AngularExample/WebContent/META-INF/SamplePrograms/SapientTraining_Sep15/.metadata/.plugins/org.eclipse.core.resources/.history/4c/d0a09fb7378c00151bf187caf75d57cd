@@ -1,0 +1,154 @@
+package com.training.cntrls;
+
+import java.util.List;
+
+import javax.validation.Valid;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.training.daos.CustomerDAO;
+import com.training.entity.Customer;
+
+@Controller
+public class CustomerController {
+
+	@Autowired
+	private ModelAndView mdl;
+	
+	@Autowired
+	private CustomerDAO dao;
+	
+	@Autowired
+	private Customer cust;
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String getWelcome(){
+		
+		return "index";
+	}
+	
+	@ModelAttribute("locations")
+	public String[] getLocations(){
+		
+		return new String[]{"Chennai","Mumbai","Delhi","Kolkatta"};
+	}
+	
+	@RequestMapping(value="/addCustomer.htm" ,method=RequestMethod.GET)
+	public ModelAndView initAddCustomer(){
+		// Conventions over configuration - command name is given by convention
+		// Can use Other Names too.
+		mdl.addObject("command",cust);
+		mdl.setViewName("AddCustomer");
+		return mdl;
+	}
+	
+	@RequestMapping(value="/addCustomer.htm" ,method=RequestMethod.POST)
+	public String onSubmit(@Valid @ModelAttribute("command") Customer obj,BindingResult result,Errors error){
+		
+		
+		if(obj.getCustomerId()<100){
+
+		    error.rejectValue("customerId", "message.custId");
+
+		     } 
+
+		
+		if(!result.hasErrors())
+		{
+			
+		int rowInserted= dao.add(obj);
+			if(rowInserted>0)
+				return "Show";
+			else return "index";
+		}
+		else
+		{
+			return "AddCustomer";
+		}
+		
+	}
+
+	
+	
+	public CustomerController() {
+		super();
+		
+		
+		
+	}
+	
+
+	@RequestMapping(value="/findCustomer.htm" ,method=RequestMethod.GET)
+	public String initFindCustomer(){
+						
+		return "FindCustomer";
+	}
+	
+	@RequestMapping(value="/findCustomer.htm" ,method=RequestMethod.POST)
+	public String srchCustomer(@RequestParam("custId") long custId,Model model) throws Exception {
+	
+		if(custId<100)
+		{
+		   throw new MyException("Err-201","Invalid Customer Id");	
+		}
+		else
+		{
+		   Customer cust = dao.find(custId);
+		   
+		   model.addAttribute("cust",cust);
+		   
+				return "ShowCustomer";
+		}
+	}
+	
+
+
+	@RequestMapping ("/srchAll.htm")
+	public String getAllCustomers (  Model model) {
+	     List<Customer> custData=dao.findAll();
+	     model.addAttribute("custRef",custData);
+	     
+	      return "ShowAllCustomers";      
+	     }
+
+	@RequestMapping(value="/customer/{custId}", method=RequestMethod.GET)
+	public String viewCustomerAddress(@PathVariable long  custId, Model model ) throws Exception{
+	              
+		
+		
+		Customer cust = dao.find(custId);
+		   
+		   model.addAttribute("cust",cust);
+		   
+				return "ShowCustomer";
+		    
+		           
+	}
+
+	
+	@ExceptionHandler(MyException.class)
+	public ModelAndView handleCustomException(MyException ex) {
+
+		ModelAndView model = new ModelAndView("ErrorHandler");
+		model.addObject("errCode", ex.getErrCode());
+		model.addObject("errMsg", ex.getErrMsg());
+
+		return model;
+
+	}
+	
+}

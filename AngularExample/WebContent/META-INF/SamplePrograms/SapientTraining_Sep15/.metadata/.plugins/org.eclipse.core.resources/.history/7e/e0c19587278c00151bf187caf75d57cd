@@ -1,0 +1,53 @@
+package com.training;
+
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+
+
+import com.training.entity.Patient;
+
+public class Application {
+
+	public static void main(String[] args) {
+		
+		
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		
+		Session session =factory.openSession();
+		
+		Transaction tx = session.beginTransaction();
+		
+		Patient obj =new Patient(107,"Suresh",8789899L);
+
+		 
+		  //Integer key =(Integer)session.save(obj);
+		  
+		 // tx.commit();
+		  
+		  //System.out.println("One Patient with Id :="+ key +" Saved");
+		  
+		
+		    Patient pat2=(Patient) session.get(Patient.class, 108);
+		    
+		    session.delete(pat2);
+		    
+		    tx.commit();
+		         
+		
+		  
+		    List<Patient> patList=(List<Patient>)session.createQuery("from Patient").list();
+		    
+		    for(Patient pat:patList)
+		    {
+		    	System.out.println(pat);
+		    }
+		    
+		    
+	}
+
+}

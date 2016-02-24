@@ -1,0 +1,19 @@
+package org.example.command;
+
+import org.apache.felix.service.command.CommandProcessor;
+
+
+import aQute.bnd.annotation.component.Component;
+import aQute.bnd.annotation.component.Reference;
+
+@Component(properties =	{
+		/* Felix GoGo Shell Commands */
+		CommandProcessor.COMMAND_SCOPE + ":String=example",
+		CommandProcessor.COMMAND_FUNCTION + ":String=greet"
+	},
+	provide = Object.class
+)
+
+public class GreetingCommand {
+
+}

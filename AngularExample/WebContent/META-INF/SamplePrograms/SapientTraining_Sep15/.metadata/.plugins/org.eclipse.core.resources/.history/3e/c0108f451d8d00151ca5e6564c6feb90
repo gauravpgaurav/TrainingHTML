@@ -1,0 +1,264 @@
+package com.training.blog.example;
+import java.io.InputStream;
+import java.util.ArrayList;
+
+import javax.jcr.AccessDeniedException;
+import javax.jcr.InvalidItemStateException;
+import javax.jcr.ItemExistsException;
+import javax.jcr.Node;
+import javax.jcr.NodeIterator;
+import javax.jcr.PathNotFoundException;
+import javax.jcr.Repository;
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
+import javax.jcr.SimpleCredentials;
+import javax.jcr.Value;
+import javax.jcr.ValueFormatException;
+import javax.jcr.Workspace;
+import javax.jcr.lock.LockException;
+import javax.jcr.nodetype.ConstraintViolationException;
+import javax.jcr.nodetype.NoSuchNodeTypeException;
+import javax.jcr.query.InvalidQueryException;
+import javax.jcr.query.Query;
+import javax.jcr.query.QueryManager;
+import javax.jcr.query.QueryResult;
+import javax.jcr.version.VersionException;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.jackrabbit.core.TransientRepository;
+
+
+public class JackrabbitBlogEntryDAO {
+
+	Log _logger = LogFactory.getLog(JackrabbitBlogEntryDAO.class);
+	
+	public static final String PROP_TITLE = "blogTitle";
+	public static final String PROP_BLOGCONTENT ="blogContent";
+	public static final String PROP_CREATIONTIME ="creationTime";
+	public static final String PROP_BLOGAUTHOR ="blogAuthor";
+	public static final String PROP_ATTACHMENT="blogAttachment";
+
+	public void insertBlogEntry(BlogEntryDTO blogEntryDTO)
+			throws Exception {
+		 
+		Session session =JackrabbitPlugin.getSession(); 
+	    
+		try {
+			Node rootNode = session.getRootNode();
+
+			Node blogEntry = rootNode.addNode("blogEntry");
+			blogEntry.setProperty(PROP_TITLE, blogEntryDTO.getTitle());
+			blogEntry.setProperty(PROP_BLOGCONTENT, blogEntryDTO.getBlogContent());
+			blogEntry.setProperty(PROP_CREATIONTIME, blogEntryDTO.getCreationTime());
+			blogEntry.setProperty(PROP_BLOGAUTHOR, blogEntryDTO.getUserName());
+
+			
+			
+			session.save();
+			
+			
+			System.out.println("Root Node"+rootNode);
+		} catch (Exception  e) {
+			  e.printStackTrace();
+		}
+			
+	}
+
+	public void updateBlogEntry(BlogEntryDTO blogEntryDTO)
+			throws BlogApplicationException {
+			try {
+			Session session = JackrabbitPlugin.getSession();
+			Node blogEntryNode = getBlogEntryNode(blogEntryDTO.getTitle(),
+					session);
+			blogEntryNode.setProperty(PROP_BLOGAUTHOR, blogEntryDTO.getUserName());
+			blogEntryNode.setProperty(PROP_BLOGCONTENT, blogEntryDTO
+					.getBlogContent());
+
+			blogEntryNode.setProperty(PROP_CREATIONTIME, blogEntryDTO
+					.getCreationTime());
+			session.save();
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+
+		
+	}
+
+	public ArrayList getBlogList() throws Exception {
+	
+		Session session = JackrabbitPlugin.getSession();
+		ArrayList blogEntryList = new ArrayList();
+		
+		try {
+			Node rootNode = session.getRootNode();
+			NodeIterator blogEntryNodeIterator = rootNode.getNodes();
+
+			while (blogEntryNodeIterator.hasNext()) {
+				Node blogEntry = blogEntryNodeIterator.nextNode();
+				if (blogEntry.getName().equals("blogEntry") == false)
+					continue;
+				String title = blogEntry.getProperty(PROP_TITLE).getString();
+				String blogContent = blogEntry.getProperty(PROP_BLOGCONTENT).getString();
+				Value creationTimeValue = (Value) blogEntry.getProperty(
+						PROP_CREATIONTIME).getValue();
+				String userName = blogEntry.getProperty(PROP_BLOGAUTHOR).getString();
+				BlogEntryDTO blogEntryDTO = new BlogEntryDTO(userName, title,
+						blogContent, creationTimeValue.getDate());
+				blogEntryList.add(blogEntryDTO);
+			}
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		return blogEntryList;
+	}
+
+	public BlogEntryDTO getBlogEntry(String blogTitle)
+			throws BlogApplicationException {
+		BlogEntryDTO blogEntryDTO = null;
+		try {
+
+			Node blogEntry = getBlogEntryNode(blogTitle);
+			String bloggerName = blogEntry.getProperty(PROP_BLOGAUTHOR).getString();
+			String blogContent = blogEntry.getProperty(PROP_BLOGCONTENT).getString();
+			Value creationTimeValue = (Value) blogEntry.getProperty(
+					PROP_CREATIONTIME).getValue();
+			blogEntryDTO = new BlogEntryDTO("Ramesh", blogTitle,
+					blogContent, creationTimeValue.getDate());
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+
+		
+		return blogEntryDTO;
+	}
+
+	public void removeBlogEntry(String blogTitle)
+			throws BlogApplicationException {
+		
+		try {
+			Session session = JackrabbitPlugin.getSession();
+			Node blogEntryNode = getBlogEntryNode(blogTitle, session);
+			blogEntryNode.remove();
+			session.save();
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+		
+	}
+
+	public ArrayList searchBlogList(String userName)
+			throws BlogApplicationException {
+		ArrayList blogEntryList = new ArrayList();
+		
+		try {
+			Session session = JackrabbitPlugin.getSession();
+			Workspace workSpace = session.getWorkspace();
+			QueryManager queryManager = workSpace.getQueryManager();
+
+			StringBuffer queryStr = new StringBuffer(
+					"//blogEntry[@"+PROP_BLOGAUTHOR +"= '");
+			queryStr.append(userName);
+			queryStr.append("']");
+			Query query = queryManager.createQuery(queryStr.toString(),
+					Query.XPATH);
+
+			QueryResult queryResult = query.execute();
+
+			NodeIterator queryResultNodeIterator = queryResult.getNodes();
+			while (queryResultNodeIterator.hasNext()) {
+
+				Node blogEntry = queryResultNodeIterator.nextNode();
+				String title = blogEntry.getProperty(PROP_TITLE).getString();
+				String blogContent = blogEntry.getProperty(PROP_BLOGCONTENT).getString();
+				Value creationTimeValue = (Value) blogEntry.getProperty(
+						PROP_CREATIONTIME).getValue();
+				BlogEntryDTO blogEntryDTO = new BlogEntryDTO(userName, title,
+						blogContent, creationTimeValue.getDate());
+				blogEntryList.add(blogEntryDTO);
+			}
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+
+		
+		return blogEntryList;
+	}
+
+	public void attachFileToBlogEntry(String blogTitle,
+			InputStream uploadInputStream) throws BlogApplicationException {
+		
+		try {
+			Session session = JackrabbitPlugin.getSession();
+			Node blogEntryNode = getBlogEntryNode(blogTitle, session);
+			blogEntryNode.setProperty(PROP_ATTACHMENT, uploadInputStream);
+			session.save();
+		} catch (Exception e) {
+		  e.printStackTrace();	
+		}
+
+		
+	}
+
+	public InputStream getAttachedFile(String blogTitle)
+			throws BlogApplicationException {
+		
+		InputStream attachFileIS = null;
+		try {
+			Node blogEntryNode = getBlogEntryNode(blogTitle);
+			Value attachFileValue = (Value) blogEntryNode.getProperty(PROP_ATTACHMENT).getValue();
+			attachFileIS = attachFileValue.getStream();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		
+		return attachFileIS;
+	}
+
+	
+	public Node getBlogEntryNode(String blogTitle)
+			throws Exception {
+		Session session = JackrabbitPlugin.getSession();
+		
+		return getBlogEntryNode(blogTitle, session);
+	}
+
+	public Node getBlogEntryNode(String blogTitle, Session session)
+			throws BlogApplicationException {
+		if (_logger.isDebugEnabled())
+			_logger.debug("Entering JackrabbitBlogEntryDAO.getNode() "
+					+ blogTitle);
+		Node blogEntry;
+		try {
+			Workspace workSpace = session.getWorkspace();
+			QueryManager queryManager = workSpace.getQueryManager();
+
+			StringBuffer queryStr = new StringBuffer("//blogEntry[@title = '");
+			queryStr.append(blogTitle);
+			queryStr.append("']");
+			Query query = queryManager.createQuery(queryStr.toString(),
+					Query.XPATH);
+
+			QueryResult queryResult = query.execute();
+
+			NodeIterator queryResultNodeIterator = queryResult.getNodes();
+			blogEntry = null;
+			while (queryResultNodeIterator.hasNext()) {
+				blogEntry = queryResultNodeIterator.nextNode();
+			}
+		} catch (InvalidQueryException e) {
+			throw new BlogApplicationException(e);
+		} catch (RepositoryException e) {
+			throw new BlogApplicationException(e);
+		}
+			return blogEntry;
+	}
+
+}

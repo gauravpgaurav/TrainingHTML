@@ -1,0 +1,33 @@
+ public Node addArticleNode(Article article, Node parent)                        #2
+            throws RepositoryException {
+
+        Node node = parent.addNode(article.getId());
+        node.setProperty(“title”, article.getTitle());
+        node.setProperty(“author”, article.getAuthor());
+        
+        Date publishDate = article.getPublishDate();
+        if (publishDate != null) {
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(publishDate);
+            node.setProperty(“publishDate”, cal);
+        }
+        
+        String description = article.getDescription();
+        if (description != null) {
+            node.setProperty(“description”, description);
+        }
+        
+        String keywords = article.getKeywords();
+        if (keywords != null) {
+            node.setProperty(“keywords”, keywords);
+        }
+        
+        Node pagesNode = node.addNode(“pages”, “nt:folder”);
+        int numPages = article.getPages().size();
+        for (int i = 0; i < numPages; i++) {
+            Page page = article.getPages().get(i);
+            addPageNode(pagesNode, page, i + 1);
+        }
+        
+        return node;
+    }

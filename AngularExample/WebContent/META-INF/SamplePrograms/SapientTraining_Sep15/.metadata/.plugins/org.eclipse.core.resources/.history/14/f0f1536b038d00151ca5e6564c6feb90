@@ -1,0 +1,53 @@
+package com.training.entity;
+import java.util.*;
+public class Appointment {
+
+	private int id;  
+	private Doctor doc;
+	private String appointDate;
+	private List<Patient> patientList;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public Doctor getDoc() {
+		return doc;
+	}
+	public void setDoc(Doctor doc) {
+		this.doc = doc;
+	}
+	public String getAppointDate() {
+		return appointDate;
+	}
+	public void setAppointDate(String appointDate) {
+		this.appointDate = appointDate;
+	}
+	public List<Patient> getPatientList() {
+		return patientList;
+	}
+	public void setPatientList(List<Patient> patientList) {
+		this.patientList = patientList;
+	}
+	public Appointment() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Appointment(int id, Doctor doc, String appointDate,
+			List<Patient> patientList) {
+		super();
+		this.id = id;
+		this.doc = doc;
+		this.appointDate = appointDate;
+		this.patientList = patientList;
+	}
+	@Override
+	public String toString() {
+		return "Appointment [id=" + id + ", doc=" + doc + ", appointDate="
+				+ appointDate + ", patientList=" + patientList + "]";
+	}
+	
+	
+	
+}

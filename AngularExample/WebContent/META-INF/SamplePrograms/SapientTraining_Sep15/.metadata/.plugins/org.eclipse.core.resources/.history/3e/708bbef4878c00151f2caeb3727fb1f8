@@ -1,0 +1,113 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+    <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link type="text/css" href="resources/css/MyStyle.css" rel="stylesheet" />
+<title>Add Customer Details</title>
+<script type="text/javascript" src="resources/scripts/jquery-1.8.2.js"></script>
+<script type="text/javascript">
+
+$(function(){
+	
+	$("#txtFld1").on('blur',function(event){
+		
+		event.preventDefault();
+		patId=$("#txtFld1").val();
+		
+		$.ajax({
+			type:'POST',
+			url:"apps.htm",
+			data:{patId:patId},
+		    success:function(resp){
+		    vals=resp.split(',');
+		    $("#txtFld2").val(vals[0]);
+		    $("#txtFld3").val(vals[1]);
+		    
+		    	
+		    }
+			
+		});
+		
+	});
+	
+});
+
+
+</script>
+<style type="text/css">
+fieldset {
+	width: 15% ;
+	height: 30%;
+	margin-left: auto;
+	margin-right: auto;
+}
+</style>
+</head>
+<body>
+
+<header>
+<ul>
+<li><a href="addDoctor.htm">Add Doctor</a></li>
+<li><a href="findDoctor.htm">Find Doctor</a></li>
+<li><a href="srchAllDoctor.htm">Find  All Doctors</a></li>
+
+</ul>
+</header>
+
+<fieldset>
+
+
+
+<legend style="font-size: 1.2em;color: red">Add Customer Details</legend>
+<form:form action="addDoctor.htm" method="post">
+
+
+	<spring:message code="label.docId"></spring:message>
+ 		<form:input path="doctorId"/>
+			   <form:errors path="doctorId" />
+	<spring:message code="label.docName"></spring:message> 
+		<form:input path="doctorName"/>
+				<form:errors path="doctorName" />
+
+	<spring:message code="label.handPhone"></spring:message>
+ 		<form:input path="handPhone" size="30px"/>
+ 				<form:errors path="handPhone" />
+ 				
+ 	<label>Patient Details</label>
+
+<form:form commandName="pat" method="post" id="frm2"> 
+ <table id="tab2">
+<tr>
+<td>Patient Id</td>
+<td>Patient Name</td>
+<td>HandPhone</td>
+</tr>
+
+<tr>
+
+<td><form:input path="patientId" id="txtFld1"/></td>
+<td><form:input path="patientName" id="txtFld2"/></td>
+<td><form:input path ="handPhone" id="txtFld3"/></td>
+<td><input type="submit" value="Finish" id="btn1"/></td>
+<td><input type="submit" value="Add More" id="btn2"/></td>
+
+</tr>
+ 
+ </table>	
+</form:form>
+<br/>
+ 
+ 		<input type="submit" value="Add" onclick="show()" id="btn3"/>
+	
+</form:form>
+</fieldset>
+</body>
+</html>
+
+
+       

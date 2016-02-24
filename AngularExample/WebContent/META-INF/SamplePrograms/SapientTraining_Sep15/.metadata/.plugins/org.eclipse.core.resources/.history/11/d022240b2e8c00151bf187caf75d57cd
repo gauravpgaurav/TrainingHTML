@@ -1,0 +1,30 @@
+package com.training.daos;
+
+import java.util.List;
+
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
+import com.training.entity.*;
+public class PatientDAO extends HibernateDaoSupport implements MyDAO<Patient> {
+
+	
+	@Override
+	public int add(Patient t) {
+	
+		getHibernateTemplate().save(t);
+		return 0;
+	}
+
+	@Override
+	public Patient find(long key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Patient> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

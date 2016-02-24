@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 17, 2015 1:40:48 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.training.entity.Appointment" table="APPOINTMENT">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="doc" class="com.training.entity.Doctor" fetch="join">
+            <column name="DOC" />
+        </many-to-one>
+        <property name="appointDate" type="java.lang.String">
+            <column name="APPOINTDATE" />
+        </property>
+        <list name="patientList" inverse="false" table="CS_App" lazy="true">
+            <key>
+                <column name="ID" />
+            </key>
+            <list-index column="patient_list_id"></list-index>
+            <one-to-many class="com.training.entity.Patient" />
+        </list>
+    </class>
+</hibernate-mapping>

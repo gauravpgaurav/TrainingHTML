@@ -1,0 +1,36 @@
+package com.training;
+
+
+
+
+import java.util.Hashtable;
+
+import org.osgi.framework.BundleActivator;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceListener;
+import org.osgi.framework.ServiceEvent;
+
+public class MyService  implements BundleActivator {
+
+	    public void start(BundleContext context)
+	    {
+	        System.out.println("Starting to listen for service events.");
+	        
+	        Hashtable<String, String> props = new Hashtable<String, String>();
+	        props.put("Language", "English");
+	        context.registerService(
+	            DictionaryService.class.getName(), new DictionaryImpl(), props);
+
+	    }
+
+	    public void stop(BundleContext context)
+	    {
+	        context.removeServiceListener(this);
+	        System.out.println("Stopped listening for service events.");
+
+	    }
+
+	   	    }
+	    
+	   	
+

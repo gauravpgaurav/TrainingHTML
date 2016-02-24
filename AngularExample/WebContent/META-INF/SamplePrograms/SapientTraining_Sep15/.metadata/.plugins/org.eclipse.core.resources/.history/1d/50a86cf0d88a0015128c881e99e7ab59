@@ -1,0 +1,90 @@
+package com.training.entity;
+import java.util.*;
+import java.util.logging.Logger;
+public class Doctor {
+
+	/*
+	 *  Three Dependency of Simple Values
+	 */
+	
+	Logger log =Logger.getLogger(this.getClass().getName());
+	private int doctorId;
+	private String doctorName;
+	private long handPhone;
+	
+	//Ref Bean - Auto Wiring
+	private Address addr;
+	
+	// Collection wiring
+	private List<Patient> patientList;
+	
+	
+	public Logger getLog() {
+		return log;
+	}
+	public void setLog(Logger log) {
+		this.log = log;
+	}
+	public Address getAddr() {
+		return addr;
+	}
+	public void setAddr(Address addr) {
+		this.addr = addr;
+	}
+	public List<Patient> getPatientList() {
+		return patientList;
+	}
+	public void setPatientList(List<Patient> patientList) {
+		this.patientList = patientList;
+	}
+	public int getDoctorId() {
+		return doctorId;
+	}
+	public void setDoctorId(int doctorId) {
+		
+		log.info("set Doctor Id is called");
+		this.doctorId = doctorId;
+	}
+	public String getDoctorName() {
+		return doctorName;
+	}
+	public void setDoctorName(String doctorName) {
+		
+		log.info("set Doctor Name is called");
+		this.doctorName = doctorName;
+	}
+	public long getHandPhone() {
+		return handPhone;
+	}
+	public void setHandPhone(long handPhone) {
+		
+		log.info("set Hand Phone is called");
+		this.handPhone = handPhone;
+	}
+	public Doctor(int doctorId, String doctorName, long handPhone) {
+		super();
+		this.doctorId = doctorId;
+		this.doctorName = doctorName;
+		this.handPhone = handPhone;
+	}
+	public Doctor() {
+		super();
+		log.info("Doctor Initialized");
+	}
+	@Override
+	public String toString() {
+		return "Doctor [doctorId=" + doctorId + ", doctorName=" + doctorName
+				+ ", handPhone=" + handPhone + "]";
+	}
+	
+	
+	public void init(){
+		
+		System.out.println("============ Init Called  ==============");
+	}
+	
+	public void destory(){
+		
+		System.out.println("=========Destroy Called =============");
+	}
+}

@@ -1,0 +1,41 @@
+package com.training;
+
+
+import javax.jcr.Repository;
+import javax.jcr.Session;
+import org.apache.jackrabbit.core.TransientRepository;
+
+
+
+public class FirstHop {
+
+	public static void main(String[] args) {
+	
+		Session session=null;
+		try{
+			
+		
+		Repository repository = new TransientRepository(); 
+	    session = repository.login(); 
+	     
+	   // session = repository.login( 
+		 //       new SimpleCredentials("admin", "admin".toCharArray())); 
+	        String user = session.getUserID(); 
+	        String vendor = repository.getDescriptor(Repository.REP_VENDOR_DESC); 
+	        String name = repository.getDescriptor(Repository.REP_NAME_DESC);
+	        String version = repository.getDescriptor(Repository.REP_VERSION_DESC);
+	        System.out.println("=============================");
+	        System.out.println("Logged in as " + user + " to a " + name );
+	        System.out.println("JCR Vendor " +vendor);
+	        System.out.println("Repository With version"+version);
+	        System.out.println("=============================");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+	    } finally { 
+	        session.logout(); 
+	    } 
+	}
+	
+}

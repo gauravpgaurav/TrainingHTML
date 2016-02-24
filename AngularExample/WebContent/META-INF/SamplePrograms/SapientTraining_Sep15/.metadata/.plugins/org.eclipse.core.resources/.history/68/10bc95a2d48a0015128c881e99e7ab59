@@ -1,0 +1,8 @@
+package com.training.entity;
+
+public class InPatient extends Patient {
+
+	private String wardNumber;
+	private String admissionDate;
+	
+}

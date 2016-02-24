@@ -1,0 +1,12 @@
+package org.example.impls;
+
+import junit.framework.TestCase;
+
+public class ExampleComponentTest extends TestCase {
+
+	public void testSayHello() {
+		String result = new ExampleComponent().sayHello("Bob");
+		assertEquals("You have learnt osgi Bob", result);
+	}
+
+}

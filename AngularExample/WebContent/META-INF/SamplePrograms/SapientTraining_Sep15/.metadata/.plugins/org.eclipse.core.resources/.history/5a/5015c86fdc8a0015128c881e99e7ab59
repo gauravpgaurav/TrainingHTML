@@ -1,0 +1,71 @@
+package com.training;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+import com.training.domains.Address;
+import com.training.entity.Doctor;
+import com.training.entity.InPatient;
+import com.training.entity.Patient;
+
+public class AssociationMapping {
+
+	public static void main(String[] args) {
+
+SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		
+		Session session =factory.openSession();
+		
+		Transaction tx = session.beginTransaction();
+		
+		InPatient obj =new InPatient(113,"Anirudh",8789899L,"General","12-10-2010");
+		
+		Address resiAdd=new Address("Gandhi Street", "NehruNagar", "indiraprasth",1100101);
+		
+		Address offAdd=new Address("Sector 145", "Tech Park", "Noida",1200101);
+		
+		obj.setOfficeAddress(offAdd);
+		
+		obj.setResiAddress(resiAdd);
+		
+       InPatient obj2 =new InPatient(114,"Shiv",8789899L,"General","12-10-2010");
+		
+		Address resiAdd2=new Address("Gandhi Street", "NehruNagar", "indiraprasth",1100101);
+		
+		Address offAdd2=new Address("Sector 149", "Tech Park", "Noida",1200101);
+		
+		obj2.setOfficeAddress(offAdd2);
+		
+		obj2.setResiAddress(resiAdd2);
+		Set<InPatient> patList =new HashSet<InPatient>();
+		
+		patList.add(obj);
+		patList.add(obj2);
+
+		Doctor doc =new Doctor(909, "Rajesh Khanna", 109499);
+		 doc.setPatientList(patList);
+		 
+		//session.save(doc);
+		 
+		 Doctor doc2 = (Doctor)session.get(Doctor.class, 909);
+		 
+		 System.out.println(doc2.getDoctorId());
+		 System.out.println(doc2.getDoctorName());
+		 System.out.println(doc2.getHandPhone());
+		 
+		 for(Patient obj:doc2.getPatientList())
+		 {
+			 System.out.println(obj);
+		 }
+		
+		tx.commit();
+
+
+	}
+
+}

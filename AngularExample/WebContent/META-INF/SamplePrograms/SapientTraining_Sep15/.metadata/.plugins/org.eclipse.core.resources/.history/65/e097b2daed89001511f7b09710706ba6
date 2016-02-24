@@ -1,0 +1,13 @@
+package com.training.domains;
+
+public class Address {
+
+	
+	private String addLine1;
+	private String addLine2;
+	private String city;
+	private long pinCode;
+	
+	
+	
+}

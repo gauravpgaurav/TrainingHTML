@@ -1,0 +1,26 @@
+package com.onjava.blog.util;
+
+public class BlogApplicationException extends Exception{
+
+	public BlogApplicationException() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public BlogApplicationException(String arg0, Throwable arg1) {
+		super(arg0, arg1);
+		// TODO Auto-generated constructor stub
+	}
+
+	public BlogApplicationException(String arg0) {
+		super(arg0);
+		// TODO Auto-generated constructor stub
+	}
+
+	public BlogApplicationException(Throwable arg0) {
+		super(arg0);
+		// TODO Auto-generated constructor stub
+	}
+	
+
+}

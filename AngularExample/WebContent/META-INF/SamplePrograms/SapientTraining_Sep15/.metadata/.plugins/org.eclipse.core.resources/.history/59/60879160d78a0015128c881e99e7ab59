@@ -1,0 +1,40 @@
+package com.training;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+import com.training.domains.Address;
+import com.training.entity.InPatient;
+import com.training.entity.Patient;
+
+public class InheritanceMapping {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		
+		Session session =factory.openSession();
+		
+		Transaction tx = session.beginTransaction();
+		
+		Patient obj =new InPatient(112,"Jay",8789899L);
+		
+		Address resiAdd=new Address("Gandhi Street", "NehruNagar", "indiraprasth",1100101);
+		
+		Address offAdd=new Address("Sector 145", "Tech Park", "Noida",1200101);
+		
+		obj.setOfficeAddress(offAdd);
+		
+		obj.setResiAddress(resiAdd);
+		
+
+		session.save(obj);
+		
+		tx.commit();
+		
+	}
+
+}

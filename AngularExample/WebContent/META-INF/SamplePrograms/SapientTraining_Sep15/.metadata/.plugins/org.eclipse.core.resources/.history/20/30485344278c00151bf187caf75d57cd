@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="MVC_Hibernate_Application">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="backport-util-concurrent.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/E:/ProgramFiles/HibernateDistributions/Hibernate3.6/hibernate-distribution-3.6.0.Final/requiredLib/backport-util-concurrent.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="javassist-3.12.0.GA.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/E:/ProgramFiles/HibernateDistributions/Hibernate3.6/hibernate-distribution-3.6.0.Final/requiredLib/javassist-3.12.0.GA.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hibernate-jpa-2.0-api-1.0.0.Final.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/E:/ProgramFiles/HibernateDistributions/Hibernate3.6/hibernate-distribution-3.6.0.Final/requiredLib/hibernate-jpa-2.0-api-1.0.0.Final.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="slf4j-api-1.7.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/E:/ProgramFiles/HibernateDistributions/Hibernate3.6/hibernate-distribution-3.6.0.Final/requiredLib/slf4j-api-1.7.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="cglib-2.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/E:/ProgramFiles/HibernateDistributions/Hibernate3.6/hibernate-distribution-3.6.0.Final/requiredLib/cglib-2.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ehcache-1.5.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/E:/ProgramFiles/HibernateDistributions/Hibernate3.6/hibernate-distribution-3.6.0.Final/requiredLib/ehcache-1.5.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="slf4j-nop-1.7.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/E:/ProgramFiles/HibernateDistributions/Hibernate3.6/hibernate-distribution-3.6.0.Final/requiredLib/slf4j-nop-1.7.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jta-1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/E:/ProgramFiles/HibernateDistributions/Hibernate3.6/hibernate-distribution-3.6.0.Final/requiredLib/jta-1.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hibernate-testing.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/E:/ProgramFiles/HibernateDistributions/Hibernate3.6/hibernate-distribution-3.6.0.Final/requiredLib/hibernate-testing.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="MVC_Hibernate_Application"/>
+        <property name="java-output-path" value="/MVC_Hibernate_Application/build/classes"/>
+    </wb-module>
+</project-modules>
