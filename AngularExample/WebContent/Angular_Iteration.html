@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Angular Iteration Example</title>
+<script type="text/javascript" src="scripts/angular.js"></script>
+
+<script type="text/javascript">
+	var app = angular.module("repeat", []);
+
+	app.controller('itemController', function($scope) {
+		$scope.items = [ {
+			Name : "Television",
+			Price : 900,
+			image : "images/tv.png"
+		}, {
+			Name : "Radio",
+			Price : 50,
+			image : "images/radio.jpg"
+		}, {
+			Name : "Mac",
+			Price : 2000,
+			image : "images/logo.jpg"
+		} ];
+
+	});
+</script>
+</head>
+<body>
+
+	<input type="search" placeholder="Search">
+	<br>
+	<div ng-app="repeat" ng-controller="itemController">
+		<table border="1" align="center">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Price</th>
+					<th>Quantity</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in items | orderBy:'Quantity'| filter:search">
+					<td>{{item.Name}}</td>
+					<td>{{item.Price | currency}}</td>
+					<td><img alt="Product" data-ng-src="{{item.image}}"
+						width="60px"></img></td>
+				</tr>
+			</tbody>
+		</table>
+</body>
+</html>
