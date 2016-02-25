@@ -41,4 +41,6 @@ function displayData(name, location, paymentMode, offers) {
 			+ paymentMode + "\nOffers : " + offers);
 
 	alert("Thank You For Confirming !");
+    
+    window.open("Assignment2.html");
 }
