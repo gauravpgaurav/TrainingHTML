@@ -26,12 +26,11 @@ $(function() {
 			offers = "None";
 		}
 
-		// console.log("Name : " + name);
-		// console.log("Location : " + location);
-		// console.log("Payment Mode : " + paymentMode);
-		// console.log("Offers : " + offers);
-
-		displayData(name, location, paymentMode, offers);
+		if (name != "") {
+			displayData(name, location, paymentMode, offers);
+		} else {
+			alert("Enter Name Please !");
+		}
 	});
 
 });
@@ -40,4 +39,6 @@ function displayData(name, location, paymentMode, offers) {
 
 	alert("Name : " + name + "\nLocation : " + location + "\nPayment Mode : "
 			+ paymentMode + "\nOffers : " + offers);
+
+	alert("Thank You For Confirming !");
 }
