@@ -2,8 +2,17 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<!-- for FF, Chrome, Opera -->
+<link rel="icon" type="image/jpg" href="images/title.jpg" sizes="16x16">
+<link rel="icon" type="image/jpg" href="images/title.jpg" sizes="32x32">
+
+<!-- for IE -->
+<link rel="icon" type="image/x-icon" href="images/title.jpg">
+<link rel="shortcut icon" type="image/x-icon" href="images/title.jpg" />
+
 <title>Place Order</title>
 <link type="text/css" href="css/styles.css" rel="stylesheet">
+<script type="text/javascript" src="jsLibs/jquery-1.12.1.min.js"></script>
 </head>
 
 <body>
@@ -18,7 +27,7 @@
 			</tr>
 			<tr>
 				<td class="th">Location :</td>
-				<td><select>
+				<td><select id="location">
 						<optgroup label="NCR">
 							<option>Gurgaon</option>
 							<option>Noida</option>
@@ -35,23 +44,28 @@
 			<tr>
 				<td class="th">Payment Mode :</td>
 				<td><div class="container">
-						<input type="radio" name="paymentMode" value="1">Cash On
-						Delivery <input type="radio" name="paymentMode" value="4">Net
-						Banking<br> <input type="radio" name="paymentMode" value="2">Debit
-						Card <input type="radio" name="paymentMode" value="3">Credit
+						<input type="radio" name="paymentMode" value="Cash On Delivery " checked>Cash
+						On Delivery <input type="radio" name="paymentMode"
+							value="Net Banking">Net Banking<br> <input
+							type="radio" name="paymentMode" value="Debit Card">Debit
+						Card <input type="radio" name="paymentMode" value="Credit Card">Credit
 						Card<br>
 					</div></td>
 			</tr>
 			<tr>
 				<td class="th">Offers :</td>
-				<td><input type="checkbox" value="1">Apply Coupon<br>
-					<input type="checkbox" value="2">Loyalty Points</td>
+				<td><input type="checkbox" value="Apply Coupon"
+					id="checkCoupon">Apply Coupon<br> <input
+					type="checkbox" value="Loyalty Points" id="checkPoint">Loyalty
+					Points</td>
 			</tr>
 			<tr>
 				<td><input type="reset" value="Reset" class="button"></td>
-				<td><input type="submit" value="Submit" class="button"></td>
+				<td><input type="button" value="Submit" class="button"
+					id="submitBtn"></td>
 			</tr>
 		</table>
 	</form>
 </body>
+<script type="text/javascript" src="scripts/JavaScript1.js"></script>
 </html>
