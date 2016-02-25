@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Place Order</title>
+<link type="text/css" href="css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<h1>Place Order !</h1>
+	<form>
+		<table>
+			<tr>
+				<td class="th">Customer Name :</td>
+				<td><input type="text" id="customerName"
+					placeholder="Enter Name"></td>
+			</tr>
+			<tr>
+				<td class="th">Location :</td>
+				<td><select>
+						<optgroup label="NCR">
+							<option>Gurgaon</option>
+							<option>Noida</option>
+						</optgroup>
+
+						<optgroup label="Delhi">
+							<option>New Delhi</option>
+							<option>Old Delhi</option>
+						</optgroup>
+
+
+				</select></td>
+			</tr>
+			<tr>
+				<td class="th">Payment Mode :</td>
+				<td><div class="container">
+						<input type="radio" name="paymentMode" value="1">Cash On
+						Delivery <input type="radio" name="paymentMode" value="4">Net
+						Banking<br> <input type="radio" name="paymentMode" value="2">Debit
+						Card <input type="radio" name="paymentMode" value="3">Credit
+						Card<br>
+					</div></td>
+			</tr>
+			<tr>
+				<td class="th">Offers :</td>
+				<td><input type="checkbox" value="1">Apply Coupon<br>
+					<input type="checkbox" value="2">Loyalty Points</td>
+			</tr>
+			<tr>
+				<td><input type="reset" value="Reset" class="button"></td>
+				<td><input type="submit" value="Submit" class="button"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

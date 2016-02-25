@@ -1,0 +1,47 @@
+body {
+	background-color: #3385ff;
+	font-family: monospace;
+}
+
+h1 {
+	color: #99ffff;
+	font-family: fantasy;
+	font-size: 40px;
+	text-shadow: 2px 2px 4px black, 0 0 35px blue, 0 0 40px darkblue;
+	text-align: center;
+	border-bottom: 8px solid white;
+}
+
+table {
+	width: 33%;
+	right: 33%;
+	position: absolute;
+	text-align: center;
+	background-color: #99ffff;
+	box-shadow: 10px 10px;
+}
+
+table, td, tr {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border: 1px dotted blue;
+	border-collapse: collapse;
+}
+
+input:hover {
+	border: 2px solid darkblue;
+}
+
+.th {
+	font-size: 15px;
+	font-family: sans-serif;
+	font-weight: bold;
+}
+
+.button {
+	font-size: 15px;
+	font-weight: bold;
+	background-color: white;
+	color: darkblue;
+	width: 90px;
+}
