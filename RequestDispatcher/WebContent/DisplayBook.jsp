@@ -10,7 +10,47 @@
 	<%
 		Book bookResult = (Book) request.getAttribute("bookResult");
 
-		out.println(bookResult);
+		if (bookResult != null) {
+	%>
+	<table border="1" align="center">
+
+		<thead>
+			<tr>
+				<td>Book Number</td>
+				<td>Book Name</td>
+				<td>Book Author</td>
+				<td>Book Price</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<%
+						out.println(bookResult.getBookNumber());
+					%>
+				</td>
+				<td>
+					<%
+						out.println(bookResult.getBookName());
+					%>
+				</td>
+				<td>
+					<%
+						out.println(bookResult.getAuthor());
+					%>
+				</td>
+				<td>
+					<%
+						out.println(bookResult.getPrice());
+					%>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<%
+		} else {
+			out.println("<h3>Book Doesn't Exist !</h3>");
+		}
 	%>
 </body>
 </html>

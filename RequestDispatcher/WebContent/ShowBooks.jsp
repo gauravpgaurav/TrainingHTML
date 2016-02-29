@@ -8,14 +8,50 @@
 <title>Books</title>
 </head>
 <body>
+	<table border="1" align="center">
 
-	<%
-		HashMap<Long, Book> bookList = (HashMap<Long, Book>) request.getAttribute("foundBooks");
-		for (Book book : bookList.values()) {
-			out.println(book);
-	%><br>
-	<%
-		}
-	%>
+		<thead>
+			<tr>
+				<td>Book Number</td>
+				<td>Book Name</td>
+				<td>Book Author</td>
+				<td>Book Price</td>
+			</tr>
+		</thead>
+		<tbody>
+			<%
+				HashMap<Long, Book> bookList = (HashMap<Long, Book>) request.getAttribute("foundBooks");
+				for (Book book : bookList.values()) {
+			%>
+
+			<tr>
+				<td>
+					<%
+						out.println(book.getBookNumber());
+					%>
+				</td>
+				<td>
+					<%
+						out.println(book.getBookName());
+					%>
+				</td>
+				<td>
+					<%
+						out.println(book.getAuthor());
+					%>
+				</td>
+				<td>
+					<%
+						out.println(book.getPrice());
+					%>
+				</td>
+			</tr>
+			<%
+				}
+			%>
+		</tbody>
+	</table>
+
+
 </body>
 </html>
