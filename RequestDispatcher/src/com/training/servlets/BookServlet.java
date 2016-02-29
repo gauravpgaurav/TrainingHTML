@@ -39,7 +39,7 @@ public class BookServlet extends HttpServlet {
 		request.setAttribute("foundBooks", bookList);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("ShowBooks.jsp");
 		dispatcher.forward(request, response);
-		
+
 	}
 
 	/**
@@ -48,8 +48,13 @@ public class BookServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+
+		long id = Long.parseLong(request.getParameter("id"));
+		BookManager mgr = new BookManager();
+		Book resultBook = mgr.findBookById(id);
+		request.setAttribute("bookResult", resultBook);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("DisplayBook.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }
