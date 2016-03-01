@@ -3,6 +3,7 @@ package com.training.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,9 +30,6 @@ public class SecondServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		PrintWriter out = response.getWriter();
-		response.setContentType("txt/html");
-		out.println("View Server Console for Special Message");
 	}
 
 	/**
@@ -40,8 +38,20 @@ public class SecondServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		PrintWriter out = response.getWriter();
+		response.setContentType("text/html");
+		String userName = request.getParameter("userName");
+		String passWord = request.getParameter("passWord");
+		String role = request.getParameter("role");
+
+		if ((userName.equals("gaurav") || userName.equals("Gaurav")) && passWord.equals("magic")) {
+			request.setAttribute("userValidation", true);
+
+		} else {
+			request.setAttribute("userValidation", false);
+		}
+		// out.println("View Server Console for Special Message ");
+
 	}
 
 }

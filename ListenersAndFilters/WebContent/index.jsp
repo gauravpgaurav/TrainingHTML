@@ -8,10 +8,23 @@
 </head>
 <body>
 	<h3>
+		LOGIN
+		<!--
 		<a href="SecondServlet">Continue</a>
+-->
 	</h3>
-	<%
-		application.setAttribute("userName", "Gaurav");
-	%>
+	<form action="SecondServlet" method="post">
+		User Name :<br> <input type="text" name="userName"><br>
+		<br> Role :<br>
+		<select name="role">
+			<option value="CHF">Chef</option>
+			<option value="WTR">Waiter</option>
+			<option value="MGR">Manager</option>
+		</select> <br> <br>Password :<br> <input type="password"
+			name="passWord"> <br>
+		<hr>
+		<input type="submit" value="Login" />
+	</form>
+
 </body>
 </html>

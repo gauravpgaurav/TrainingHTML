@@ -8,12 +8,10 @@
 		<param-name>userName</param-name>
 		<param-value>gauravpgaurav</param-value>
 	</context-param>
-
 	<context-param>
 		<param-name>passWord</param-name>
 		<param-value>12345</param-value>
 	</context-param>
-
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.htm</welcome-file>
@@ -25,7 +23,6 @@
 	<listener>
 		<listener-class>com.training.listeners.MyContextListener</listener-class>
 	</listener>
-
 	<servlet>
 		<description></description>
 		<display-name>SecondServlet</display-name>
@@ -36,4 +33,22 @@
 		<servlet-name>SecondServlet</servlet-name>
 		<url-pattern>/SecondServlet</url-pattern>
 	</servlet-mapping>
+	<filter>
+		<display-name>LoggingFilter</display-name>
+		<filter-name>LoggingFilter</filter-name>
+		<filter-class>com.training.filters.LoggingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>LoggingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter>
+		<display-name>AuthenticationFilter</display-name>
+		<filter-name>AuthenticationFilter</filter-name>
+		<filter-class>com.training.filters.AuthenticationFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AuthenticationFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 </web-app>
