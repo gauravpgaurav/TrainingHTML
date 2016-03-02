@@ -31,9 +31,11 @@ public class ForEachTag extends TagSupport {
 			JspWriter out = pageContext.getOut();
 			List<Object> nameList = (List<Object>) pageContext.findAttribute(items);
 			if (nameList != null) {
+				out.println("<ol>");
 				for (Object obj : nameList) {
-					out.println(obj);
+					out.println("<li>" + obj + "</li>");
 				}
+				out.println("</ol>");
 			}
 
 		} catch (Exception e) {
