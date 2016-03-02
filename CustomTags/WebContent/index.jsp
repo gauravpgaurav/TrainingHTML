@@ -9,7 +9,9 @@
 </head>
 <body>
 
-	<mytag:greet userName="Gaurav"></mytag:greet>
+	<mytag:greet userName="Gaurav"/>
+	<br><hr><br>
+	<mytag:greet/>
 
 </body>
 </html>
