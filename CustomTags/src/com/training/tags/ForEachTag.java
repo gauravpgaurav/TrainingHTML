@@ -1,45 +1,42 @@
 package com.training.tags;
 
+import java.util.*;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.Tag;
 import javax.servlet.jsp.tagext.TagSupport;
 
-public class GreetingTag extends TagSupport {
+public class ForEachTag extends TagSupport {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String userName;
+	private String items;
 
-	public GreetingTag() {
+	public ForEachTag() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setItems(String items) {
+		this.items = items;
 	}
 
 	@Override
 	public int doStartTag() throws JspException {
 
 		try {
-
 			JspWriter out = pageContext.getOut();
-
-			if (userName != null) {
-
-				out.println("<b>Welcome to Custom Tag Programming </b>" + userName + " !");
-			}
-
-			else {
-				out.println("<i>Dear Guest Welcome to Custom Tag Programming !</i>");
+			List<Object> nameList = (List<Object>) pageContext.findAttribute(items);
+			if (nameList != null) {
+				for (Object obj : nameList) {
+					out.println(obj);
+				}
 			}
 
 		} catch (Exception e) {
-
 			System.out.println(e.getMessage());
 		}
 		return Tag.SKIP_BODY;

@@ -4,22 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Custom Tags</title>
-<%@ taglib uri="http://training.com/examples/greet" prefix="mytag"%>
+<title>For Each List</title>
 </head>
+<%@ taglib uri="http://training.com/examples/greet" prefix="mytag"%>
 <body>
-
-
-	<mytag:greet userName="Gaurav" />
-
-	<br>
-	<hr>
-	<br>
-
-	<mytag:greet />
-	<br>
-	<br>
-	<a href="FirstServlet">Show All Names</a>
+	<h2>Name List</h2>
+	<mytag:foreach items="names"></mytag:foreach>
 
 </body>
 </html>
