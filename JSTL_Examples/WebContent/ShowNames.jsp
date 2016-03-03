@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -10,9 +10,14 @@
 <body>
 
 	<table border="1">
-		<c:forEach items="${requestScope.nameList}" var="bots">
+		<c:forEach items="${requestScope.nameList}" var="bot">
 			<tr>
-				<td><c:out value="${bots }" />
+				<c:if test="${bot.contains('O')}">
+					<td><b><c:out value="${bot}" /></b></td>
+				</c:if>
+				<c:if test="${!bot.contains('O')}">
+					<td><i><c:out value="${bot}" /></i></td>
+				</c:if>
 			</tr>
 		</c:forEach>
 	</table>

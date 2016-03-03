@@ -36,7 +36,7 @@ public class NameServlet extends HttpServlet {
 		nameList.add("R2D2");
 		nameList.add("C3PO");
 		nameList.add("BB8");
-		nameList.add("Chewie");
+		nameList.add("GPSC0Ol");
 
 		request.setAttribute("nameList", nameList);
 
