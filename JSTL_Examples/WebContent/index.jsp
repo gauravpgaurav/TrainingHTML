@@ -15,5 +15,8 @@
 	<br>
 	<br>
 	<a href="NameServlet">Droids You Are Not Looking For</a>
+	<br>
+	<br>
+	<a href="AddUser.jsp">Language</a>
 </body>
 </html>
