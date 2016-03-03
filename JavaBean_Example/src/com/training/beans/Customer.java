@@ -62,4 +62,7 @@ public class Customer implements Serializable {
 		log.info("Set Customer Hand Phone");
 	}
 
+	public String getInfo() {
+		return "Message From Bean";
+	}
 }

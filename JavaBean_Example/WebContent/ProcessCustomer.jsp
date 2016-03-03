@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 </head>
 <body>
 	<jsp:useBean id="custBean" class="com.training.beans.Customer"
@@ -14,10 +15,10 @@
 	Dear :
 	<jsp:getProperty property="customerName" name="custBean" />
 	thanks for Adding
+	<a href="CreateError.jsp">Throw Exception</a>
+	<br>Invoking Bean Method
+	<br>
+	<c:out value="${custBean.getInfo()}" />
 
-	<%!String age = "four";%>
-	<%
-		int intAge = Integer.parseInt(age);
-	%>
 </body>
 </html>
