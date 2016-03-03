@@ -10,7 +10,7 @@
 <body>
 	<h1>Customer Details Management</h1>
 	
-	<c:if test="${sessionScope.loginUser == null}">
+	<c:if test="${empty sessionScope.loginUser}">
 		<c:redirect url="Login.jsp" />
 	</c:if>
 	

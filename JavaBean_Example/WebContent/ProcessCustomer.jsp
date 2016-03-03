@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="loginUser" scope="session" value="${param.customerName}" />
+
 </head>
 <body>
 	<header>
@@ -21,7 +21,12 @@
 		<jsp:getProperty property="customerName" name="custBean" />
 		thanks for Adding <br> Invoking Bean Method <br>
 		<c:out value="${custBean.getInfo()}" />
-		<c:set var="loginUser" scope="session" value="123" />
+		
+		<c:set var="loginUser" scope="session"  /> 
+		
+		
+		<%=request.getAttribute("customerName") %>
+		
 		<br> <br> <br>
 		<hr>
 		<a href="CreateError.jsp">Throw Exception</a>

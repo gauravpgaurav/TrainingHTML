@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link href="css/Styles.css" type="text/css" rel="stylesheet" />
+<title>Penguins</title>
+</head>
+<body>
+
+	<header>
+		<div id="hdRight">
+			<h1>Flight Less Birds</h1>
+		</div>
+		<div id="hdLeft">
+			<img alt="Birds" src="images/Penguins.jpg">
+		</div>
+
+	</header>
+
+	<nav>
+		<ul>
+			<li><a href="Home.html">Home</a></li>
+			<li><a href="Book.html">Book</a></li>
+			<li><a href="Order.html">Order</a></li>
+			<li><a href="Review.html">Reviews</a></li>
+			<li><a href="Contact.html">Contact Us</a></li>
+		</ul>
+	</nav>
+	<section>
+
+		<form action="Validate" method="post">
+
+			<table>
+				<tr>
+					<td><label>UserName</label></td>
+					<td><input type=text name="userName" id="userName"
+						placeholder="Enter Username"></td>
+				</tr>
+				<tr>
+					<td><label>PassWord</label></td>
+					<td><input type="password" name="passWord"
+						placeholder="Enter Password"></td>
+				</tr>
+				<tr>
+					<td><label>Role</label></td>
+					<td><select name="role">
+							<option value="ADM">Administration</option>
+							<option value="CHF">Chef</option>
+							<option value="WAI">Waiter</option>
+							<option value="MGR">Manager</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td><label>D.O.B.</label></td>
+					<td><input type="date" name="dob" min=""></td>
+				</tr>
+				<tr>
+					<td><label>Time of Login</label></td>
+					<td><input type="time" name="time"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="image"
+						src="images/PenguinSwimming.png" value="Login" id="submitImg"></td>
+				</tr>
+			</table>
+		</form>
+	</section>
+	<script type="text/javascript" src="scripts/indexJs.js"></script>
+</body>
+</html>
