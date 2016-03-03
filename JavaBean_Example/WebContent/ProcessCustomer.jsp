@@ -1,24 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" errorPage="ExceptionHandler.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="loginUser" scope="session" value="${param.customerName}" />
 </head>
 <body>
-	<jsp:useBean id="custBean" class="com.training.beans.Customer"
-		scope="session" />
+	<header>
+		<%@ include file="Header.jsp"%>
+	</header>
 
-	<jsp:setProperty property="*" name="custBean" />
-	Dear :
-	<jsp:getProperty property="customerName" name="custBean" />
-	thanks for Adding
-	<a href="CreateError.jsp">Throw Exception</a>
-	<br>Invoking Bean Method
-	<br>
-	<c:out value="${custBean.getInfo()}" />
+	<section>
+		<jsp:useBean id="custBean" class="com.training.beans.Customer"
+			scope="session" />
+		<jsp:setProperty property="*" name="custBean" />
+		Dear :
+		<jsp:getProperty property="customerName" name="custBean" />
+		thanks for Adding <br> Invoking Bean Method <br>
+		<c:out value="${custBean.getInfo()}" />
+		<c:set var="loginUser" scope="session" value="123" />
+		<br> <br> <br>
+		<hr>
+		<a href="CreateError.jsp">Throw Exception</a>
+		<hr>
+	</section>
 
+	<footer>
+		<%@ include file="Footer.jsp"%>
+	</footer>
 </body>
 </html>
