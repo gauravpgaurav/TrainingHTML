@@ -10,8 +10,6 @@
 </head>
 <body>
 
-	<fmt:setLocale value="en" />
-
 
 	<fmt:setBundle basename="MessageResource" var="msg" scope="page" />
 	<form>
@@ -20,7 +18,7 @@
 				key="forms.label.passWord" bundle="${msg}" /></label> <input
 			type="password" name="passWord">
 	</form>
-	
+
 	<br>
 	<jsp:useBean id="now" class="java.util.Date" />
 
