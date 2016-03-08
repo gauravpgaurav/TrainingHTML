@@ -1,6 +1,8 @@
 package com.training.resources;
 
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -27,7 +29,19 @@ public class SimpleResource {
 		Employee emp = new Employee(101, "Gaurav");
 		Genson serializer = new Genson();
 		empRep = serializer.serialize(emp);
-		
+
 		return empRep;
+	}
+
+	@POST
+	@Path("/add")
+	public String addEmployee(@FormParam("id") long empId, @FormParam("name") String empName) {
+
+		String message = null;
+		Employee emp = new Employee(empId, empName);
+
+		message = emp.toString();
+
+		return "One Employee with " + message + " Added";
 	}
 }

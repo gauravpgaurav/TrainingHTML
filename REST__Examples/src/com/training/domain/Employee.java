@@ -32,4 +32,9 @@ public class Employee {
 		this.empName = empName;
 	}
 
+	@Override
+	public String toString() {
+		return "Employee [empId=" + empId + ", empName=" + empName + "]";
+	}
+
 }
