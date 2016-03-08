@@ -1,13 +1,10 @@
 package com.training.resources;
 
-import javax.ws.rs.DELETE;
-import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import java.util.HashMap;
+
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import com.owlike.genson.Genson;
 import com.training.domain.Employee;
@@ -49,9 +46,23 @@ public class SimpleResource {
 
 	@DELETE
 	@Path("/delete/{empId}")
-	public String deleteEmployee(@PathParam("id") long empId) {
+	public String deleteEmployee(@PathParam("empId") long empId) {
 
-		
 		return "One Employee with id " + empId + " Deleted";
+	}
+
+	@GET
+	@Path("/findAll")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response findAllEmployees(@QueryParam("dept") String department) {
+
+		HashMap<String, Employee> list = new HashMap<String, Employee>();
+
+		list.put("HR", new Employee(101, "Ramesh"));
+		list.put("IT", new Employee(102, "Gamesh"));
+		list.put("AD", new Employee(103, "Suresh"));
+
+		Employee found = list.get(department);
+		return Response.status(200).entity(found).build();
 	}
 }
